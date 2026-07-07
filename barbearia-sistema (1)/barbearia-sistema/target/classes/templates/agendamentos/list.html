@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meus Agendamentos - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <div class="card">
+        <h1>Meus Agendamentos</h1>
+        <a th:href="@{/agendamentos/novo}" class="btn">+ Novo Agendamento</a>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Data/Hora</th>
+                <th>Barbeiro</th>
+                <th>Serviço</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ag : ${agendamentos}">
+                <td th:text="${#temporals.format(ag.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${ag.barbeiro.nome}"></td>
+                <td th:text="${ag.servico.nome}"></td>
+                <td>
+                    <span class="badge" th:classappend="'badge-' + ${ag.status}" th:text="${ag.status}"></span>
+                </td>
+                <td>
+                    <form th:if="${ag.status.name() == 'AGENDADO'}" class="inline"
+                          th:action="@{/agendamentos/{id}/cancelar(id=${ag.id})}" method="post"
+                          onsubmit="return confirm('Cancelar este agendamento?');">
+                        <button type="submit" class="btn btn-danger">Cancelar</button>
+                    </form>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(agendamentos)}">
+                <td colspan="5">Nenhum agendamento encontrado.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

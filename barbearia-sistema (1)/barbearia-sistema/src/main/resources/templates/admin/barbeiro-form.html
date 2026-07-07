@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Barbeiro - Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <div class="card">
+        <h1 th:text="${barbeiro.id} ? 'Editar Barbeiro' : 'Novo Barbeiro'"></h1>
+
+        <form th:action="@{/admin/barbeiros}" th:object="${barbeiro}" method="post">
+            <input type="hidden" th:field="*{id}">
+
+            <div class="form-group">
+                <label>Nome</label>
+                <input type="text" th:field="*{nome}" required>
+                <span class="error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Especialidade</label>
+                <input type="text" th:field="*{especialidade}">
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" th:field="*{ativo}" style="width:auto;"> Ativo
+                </label>
+            </div>
+
+            <button type="submit" class="btn">Salvar</button>
+            <a th:href="@{/admin/barbeiros}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

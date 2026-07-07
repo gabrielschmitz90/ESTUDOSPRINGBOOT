@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Serviços - Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <div class="card">
+        <h1>Serviços</h1>
+        <a th:href="@{/admin/servicos/novo}" class="btn">+ Novo Serviço</a>
+
+        <table>
+            <thead>
+            <tr><th>Nome</th><th>Preço</th><th>Duração</th><th>Status</th><th>Ações</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="s : ${servicos}">
+                <td th:text="${s.nome}"></td>
+                <td th:text="'R$ ' + ${s.preco}"></td>
+                <td th:text="${s.duracaoMinutos} + ' min'"></td>
+                <td th:text="${s.ativo} ? 'Ativo' : 'Inativo'"></td>
+                <td>
+                    <a th:href="@{/admin/servicos/{id}/editar(id=${s.id})}" class="btn btn-secondary">Editar</a>
+                    <form class="inline" th:action="@{/admin/servicos/{id}/excluir(id=${s.id})}" method="post"
+                          onsubmit="return confirm('Excluir este serviço?');">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

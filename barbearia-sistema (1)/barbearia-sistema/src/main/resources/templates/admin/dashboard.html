@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Admin - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <h1>Painel Administrativo</h1>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-stat">
+            <div class="number" th:text="${totalAgendamentos}"></div>
+            <div>Agendamentos</div>
+        </div>
+        <div class="dashboard-stat">
+            <div class="number" th:text="${totalBarbeiros}"></div>
+            <div>Barbeiros</div>
+        </div>
+        <div class="dashboard-stat">
+            <div class="number" th:text="${totalServicos}"></div>
+            <div>Serviços</div>
+        </div>
+        <div class="dashboard-stat">
+            <div class="number" th:text="${totalUsuarios}"></div>
+            <div>Usuários</div>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top:24px;">
+        <h2>Gerenciamento</h2>
+        <a th:href="@{/admin/barbeiros}" class="btn">Barbeiros</a>
+        <a th:href="@{/admin/servicos}" class="btn">Serviços</a>
+        <a th:href="@{/admin/agendamentos}" class="btn">Agendamentos</a>
+    </div>
+</div>
+</body>
+</html>

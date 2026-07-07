@@ -1,0 +1,26 @@
+<nav xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+     th:fragment="navbar" class="navbar">
+    <div class="navbar-brand">
+        <a th:href="@{/home}">💈 Barbearia</a>
+    </div>
+    <div class="navbar-links">
+        <a th:href="@{/home}">Início</a>
+        <a th:href="@{/agendamentos}" sec:authorize="hasAnyRole('USUARIO','ADMIN')">Meus Agendamentos</a>
+        <a th:href="@{/agendamentos/novo}" sec:authorize="hasAnyRole('USUARIO','ADMIN')">Agendar</a>
+
+        <span class="navbar-admin" sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/admin}">Dashboard</a>
+            <a th:href="@{/admin/barbeiros}">Barbeiros</a>
+            <a th:href="@{/admin/servicos}">Serviços</a>
+            <a th:href="@{/admin/agendamentos}">Todos Agendamentos</a>
+        </span>
+
+        <span class="navbar-user" sec:authorize="isAuthenticated()">
+            <span sec:authentication="name"></span>
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="link-button">Sair</button>
+            </form>
+        </span>
+    </div>
+</nav>

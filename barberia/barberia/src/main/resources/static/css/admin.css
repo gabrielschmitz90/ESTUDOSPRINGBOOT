@@ -1,0 +1,175 @@
+/* ===========================
+   BARBEARIA SYSTEM
+=========================== */
+
+body{
+    background:#f4f4f4;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+/* Navbar */
+
+.navbar{
+    background:#1b1b1b;
+}
+
+.navbar-brand{
+    color:#ffc107 !important;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.nav-link{
+    color:white !important;
+    font-size:17px;
+}
+
+.nav-link:hover{
+    color:#ffc107 !important;
+}
+
+/* Cards */
+
+.card{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.card-header{
+    background:#1b1b1b;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+}
+
+/* Botões */
+
+.btn-primary{
+    background:#212529;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#000;
+}
+
+.btn-success{
+    background:#198754;
+}
+
+.btn-warning{
+    color:white;
+}
+
+.btn-danger{
+    background:#dc3545;
+}
+
+/* Tabelas */
+
+.table{
+    background:white;
+}
+
+.table thead{
+    background:#212529;
+    color:white;
+}
+
+.table-hover tbody tr:hover{
+    background:#f1f1f1;
+}
+
+/* Formulários */
+
+.form-control,
+.form-select{
+    border-radius:10px;
+}
+
+label{
+    font-weight:bold;
+}
+
+/* Dashboard */
+
+.dashboard-card{
+    padding:30px;
+    border-radius:15px;
+    color:white;
+    text-align:center;
+    transition:.3s;
+}
+
+.dashboard-card:hover{
+    transform:scale(1.05);
+}
+
+.clientes{
+    background:#0d6efd;
+}
+
+.barbeiros{
+    background:#198754;
+}
+
+.servicos{
+    background:#ffc107;
+    color:black;
+}
+
+.agendamentos{
+    background:#dc3545;
+}
+
+/* Footer */
+
+footer{
+    margin-top:50px;
+    background:#1b1b1b;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* Título */
+
+.titulo{
+    margin:30px 0;
+    font-weight:bold;
+}
+
+/* Espaçamento */
+
+.container{
+    margin-top:30px;
+}
+
+/* Inputs */
+
+input:focus,
+select:focus{
+    box-shadow:none !important;
+    border:2px solid #212529;
+}
+
+/* Botão voltar */
+
+.btn-voltar{
+    margin-right:10px;
+}
+
+/* Responsivo */
+
+@media(max-width:768px){
+
+    .navbar-brand{
+        font-size:22px;
+    }
+
+    .dashboard-card{
+        margin-bottom:20px;
+    }
+
+}

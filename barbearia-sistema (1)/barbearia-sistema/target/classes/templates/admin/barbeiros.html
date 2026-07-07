@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Barbeiros - Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <div class="card">
+        <h1>Barbeiros</h1>
+        <a th:href="@{/admin/barbeiros/novo}" class="btn">+ Novo Barbeiro</a>
+
+        <table>
+            <thead>
+            <tr><th>Nome</th><th>Especialidade</th><th>Status</th><th>Ações</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="b : ${barbeiros}">
+                <td th:text="${b.nome}"></td>
+                <td th:text="${b.especialidade}"></td>
+                <td th:text="${b.ativo} ? 'Ativo' : 'Inativo'"></td>
+                <td>
+                    <a th:href="@{/admin/barbeiros/{id}/editar(id=${b.id})}" class="btn btn-secondary">Editar</a>
+                    <form class="inline" th:action="@{/admin/barbeiros/{id}/excluir(id=${b.id})}" method="post"
+                          onsubmit="return confirm('Excluir este barbeiro?');">
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

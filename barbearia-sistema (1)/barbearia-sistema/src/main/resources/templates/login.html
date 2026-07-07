@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="auth-box">
+    <h1>💈 Barbearia</h1>
+    <h2>Entrar</h2>
+
+    <div class="alert-success" th:if="${sucesso}">Cadastro realizado com sucesso! Faça login.</div>
+    <div class="alert-success" th:if="${param.logout}">Você saiu do sistema.</div>
+    <div class="alert-error" th:if="${param.erro}">E-mail ou senha inválidos.</div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" name="username" required autofocus>
+        </div>
+        <div class="form-group">
+            <label>Senha</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit" class="btn" style="width:100%;">Entrar</button>
+    </form>
+
+    <p style="text-align:center; margin-top:15px;">
+        Não tem conta? <a th:href="@{/registrar}">Cadastre-se</a>
+    </p>
+
+    <p style="text-align:center; font-size:0.8em; color:#888; margin-top:20px;">
+        Admin de teste: admin@barbearia.com / admin123<br>
+        Usuário de teste: cliente@barbearia.com / cliente123
+    </p>
+</div>
+</body>
+</html>

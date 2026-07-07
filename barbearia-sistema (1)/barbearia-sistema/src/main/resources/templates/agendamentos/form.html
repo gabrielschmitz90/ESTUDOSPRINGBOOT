@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Agendamento - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <div class="card">
+        <h1>Novo Agendamento</h1>
+
+        <form th:action="@{/agendamentos}" th:object="${agendamentoForm}" method="post">
+            <div class="form-group">
+                <label>Barbeiro</label>
+                <select th:field="*{barbeiroId}" required>
+                    <option value="">Selecione...</option>
+                    <option th:each="b : ${barbeiros}" th:value="${b.id}" th:text="${b.nome} + ' - ' + ${b.especialidade}"></option>
+                </select>
+                <span class="error" th:if="${#fields.hasErrors('barbeiroId')}" th:errors="*{barbeiroId}"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Serviço</label>
+                <select th:field="*{servicoId}" required>
+                    <option value="">Selecione...</option>
+                    <option th:each="s : ${servicos}" th:value="${s.id}"
+                            th:text="${s.nome} + ' - R$ ' + ${s.preco} + ' (' + ${s.duracaoMinutos} + ' min)'"></option>
+                </select>
+                <span class="error" th:if="${#fields.hasErrors('servicoId')}" th:errors="*{servicoId}"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Data e Hora</label>
+                <input type="datetime-local" th:field="*{dataHora}" required>
+                <span class="error" th:if="${#fields.hasErrors('dataHora')}" th:errors="*{dataHora}"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Observações (opcional)</label>
+                <textarea th:field="*{observacoes}" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn">Confirmar Agendamento</button>
+            <a th:href="@{/agendamentos}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

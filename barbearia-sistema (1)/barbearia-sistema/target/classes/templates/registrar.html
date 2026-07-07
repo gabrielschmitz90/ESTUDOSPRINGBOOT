@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="auth-box">
+    <h1>💈 Barbearia</h1>
+    <h2>Criar conta</h2>
+
+    <form th:action="@{/registrar}" th:object="${usuario}" method="post">
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" th:field="*{nome}" required>
+            <span class="error" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+        </div>
+        <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" th:field="*{email}" required>
+            <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        </div>
+        <div class="form-group">
+            <label>Telefone</label>
+            <input type="text" th:field="*{telefone}">
+        </div>
+        <div class="form-group">
+            <label>Senha</label>
+            <input type="password" th:field="*{senha}" required>
+            <span class="error" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></span>
+        </div>
+        <button type="submit" class="btn" style="width:100%;">Cadastrar</button>
+    </form>
+
+    <p style="text-align:center; margin-top:15px;">
+        Já tem conta? <a th:href="@{/login}">Entrar</a>
+    </p>
+</div>
+</body>
+</html>

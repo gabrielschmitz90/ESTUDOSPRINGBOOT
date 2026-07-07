@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Todos Agendamentos - Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container">
+    <div class="card">
+        <h1>Todos os Agendamentos</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Data/Hora</th>
+                <th>Cliente</th>
+                <th>Barbeiro</th>
+                <th>Serviço</th>
+                <th>Status</th>
+                <th>Alterar status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ag : ${agendamentos}">
+                <td th:text="${#temporals.format(ag.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${ag.usuario.nome}"></td>
+                <td th:text="${ag.barbeiro.nome}"></td>
+                <td th:text="${ag.servico.nome}"></td>
+                <td>
+                    <span class="badge" th:classappend="'badge-' + ${ag.status}" th:text="${ag.status}"></span>
+                </td>
+                <td>
+                    <form class="inline" th:action="@{/admin/agendamentos/{id}/status(id=${ag.id})}" method="post">
+                        <select name="status" onchange="this.form.submit()">
+                            <option th:each="st : ${statusList}" th:value="${st}" th:text="${st}"
+                                    th:selected="${st == ag.status}"></option>
+                        </select>
+                    </form>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(agendamentos)}">
+                <td colspan="6">Nenhum agendamento encontrado.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
